@@ -1,0 +1,595 @@
+{
+  "name": "Upwork Automation Scrapping",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        80,
+        896
+      ],
+      "id": "0eeebdd9-8b22-448e-83e8-451e31623bf1",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "url": "https://inc42.com/feed/",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.rssFeedRead",
+      "typeVersion": 1.2,
+      "position": [
+        352,
+        784
+      ],
+      "id": "fea26c46-c555-407f-9efd-5bf0e8612d0f",
+      "name": "RSS Read"
+    },
+    {
+      "parameters": {
+        "operation": "upsert",
+        "base": {
+          "__rl": true,
+          "value": "appRLu61jepdQ8rc7",
+          "mode": "list",
+          "cachedResultName": "Upwork Leads",
+          "cachedResultUrl": "https://airtable.com/appRLu61jepdQ8rc7"
+        },
+        "table": {
+          "__rl": true,
+          "value": "tbliwaOKl295fENVg",
+          "mode": "list",
+          "cachedResultName": "Table 2",
+          "cachedResultUrl": "https://airtable.com/appRLu61jepdQ8rc7/tbliwaOKl295fENVg"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "company_name": "={{ $json.company_name }}",
+            "founder": "={{ $json.founder }}",
+            "industry": "={{ $json.industry }}",
+            "email_draft": "={{ $json.email_draft }}",
+            "whatsapp_draft": "={{ $json.whatsapp_draft }}",
+            "description": "={{ $json.description }}",
+            "contact_email": "={{ $json.contact_email }}",
+            "website_url": "={{ $json.website_url }}",
+            "location": "={{ $json.location }}",
+            "startup_stage": "={{ $json.startup_stage }}",
+            "target_customer": "={{ $json.target_customer }}"
+          },
+          "matchingColumns": [
+            "company_name"
+          ],
+          "schema": [
+            {
+              "id": "id",
+              "displayName": "id",
+              "required": false,
+              "defaultMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": true,
+              "removed": true
+            },
+            {
+              "id": "company_name",
+              "displayName": "company_name",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "founder",
+              "displayName": "founder",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "industry",
+              "displayName": "industry",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "website_url",
+              "displayName": "website_url",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "contact_email",
+              "displayName": "contact_email",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "location",
+              "displayName": "location",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "startup_stage",
+              "displayName": "startup_stage",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "target_customer",
+              "displayName": "target_customer",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "description",
+              "displayName": "description",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "email_draft",
+              "displayName": "email_draft",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "whatsapp_draft",
+              "displayName": "whatsapp_draft",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 2.1,
+      "position": [
+        2864,
+        1008
+      ],
+      "id": "152e036c-39f3-4e01-b9c6-7f7ccfde4df1",
+      "name": "Airtable Save",
+      "credentials": {
+        "airtableTokenApi": {
+          "id": "TAjGqt4jrVngnAQ1",
+          "name": "Airtable Personal Access Token account"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        656,
+        880
+      ],
+      "id": "4debe3ce-525c-4a29-91af-710f6a202059",
+      "name": "Merge"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Analyze this startup news: {{ $json[\"content:encoded\"] }} || {{ $json[\"description\"] }}\n\nExtract details in PURE JSON.\n\nCRITICAL RULES:\n1. Company Name: Identify the SUBJECT startup. If it's a generic report or about \"Inc42\"/\"Oracle\", return \"INVALID\".\n2. Startup Stage: Look for keywords \"Seed\", \"Series A\", \"Pre-Series\". If a funding amount is mentioned (e.g., $1M+), label \"Seed+\". If bootstrap/unknown, label \"Early Stage\".\n3. Target Customer: Infer \"B2B\" (Business), \"B2C\" (Consumer), or \"D2C\" (Direct to Consumer).\n4. No Emojis in email or whatsapp draft.\n\nReturn JSON object:\n{\n  \"company_name\": \"Name OR 'INVALID'\",\n  \"founder\": \"Name OR Empty String\",\n  \"industry\": \"Industry OR Empty String\",\n  \"location\": \"City Name OR 'India'\",\n  \"startup_stage\": \"Stage OR Empty String\",\n  \"target_customer\": \"B2B/B2C/D2C\",\n  \"contact_email\": \"Email OR Empty String\",\n  \"description\": \"Summary\",\n  \"email_draft\": \"Message\",\n  \"whatsapp_draft\": \"Message\"\n}",
+        "messages": {
+          "messageValues": [
+            {
+              "message": "="
+            }
+          ]
+        },
+        "batching": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.9,
+      "position": [
+        1424,
+        1024
+      ],
+      "id": "edd8c3ea-bab2-4937-951e-42726954070b",
+      "name": "Basic LLM Chain"
+    },
+    {
+      "parameters": {
+        "model": "mistral:latest",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOllama",
+      "typeVersion": 1,
+      "position": [
+        1424,
+        1296
+      ],
+      "id": "d3095529-f301-454c-aafc-c5186a944c8e",
+      "name": "Ollama Chat Model",
+      "credentials": {
+        "ollamaApi": {
+          "id": "NfVc8apS4pHRPevp",
+          "name": "Ollama account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "url": "https://yourstory.com/feed/",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.rssFeedRead",
+      "typeVersion": 1.2,
+      "position": [
+        352,
+        1008
+      ],
+      "id": "c0626525-2540-486f-a1bc-e54614a904a5",
+      "name": "RSS Read1"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        1168,
+        880
+      ],
+      "id": "75a670bf-40ba-453b-ac4b-64afa31b96a4",
+      "name": "Loop Over Items"
+    },
+    {
+      "parameters": {
+        "jsCode": "return items.slice(0, 10);\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        912,
+        880
+      ],
+      "id": "41cc6ff2-d7e1-4b01-82bf-eba584306aeb",
+      "name": "Slice Items"
+    },
+    {
+      "parameters": {
+        "url": "https://autocomplete.clearbit.com/v1/companies/suggest",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "query",
+              "value": "={{ $json.company_name }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        2048,
+        1024
+      ],
+      "id": "c12c2c1c-0c21-40ef-ac0a-fa992bdd306f",
+      "name": "Clearbit",
+      "alwaysOutputData": true
+    },
+    {
+      "parameters": {
+        "jsCode": "const llmText = items[0].json.text; \nconst jsonMatch = llmText.match(/\\{[\\s\\S]*\\}/);\n\nif (jsonMatch) {\n  // Sanitize invisible characters\n  let cleanJson = jsonMatch[0].replace(/[\\u0000-\\u0019]+/g, \"\"); \n  \n  try {\n      let data = JSON.parse(cleanJson);\n      \n      // 1. Force Target Customer Default\n      if (!data.target_customer || data.target_customer.trim() === \"\") {\n          data.target_customer = \"B2B\"; \n      }\n\n      // 2. Force Startup Stage Default\n      if (!data.startup_stage || data.startup_stage.trim() === \"\") {\n          data.startup_stage = \"Early Stage\";\n      }\n\n      return [{ json: data }];\n  } catch (e) {\n      return [{ json: { company_name: \"INVALID\", error: \"JSON Parse Failed\" } }];\n  }\n} else {\n  return [{ json: { company_name: \"INVALID\", error: \"No JSON Found\" } }];\n}"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1792,
+        1024
+      ],
+      "id": "c33ed081-fd96-4d7d-94a8-f1bd8c5decb4",
+      "name": "Parser"
+    },
+    {
+      "parameters": {
+        "jsCode": "// 1. Get Clearbit Data (Current Input)\nconst clearbitResult = items[0].json;\n\n// 2. Get LLM Data (Safe Retrieval for Loops)\nlet llmData = { \n    company_name: \"Unknown\", \n    founder: \"\", \n    startup_stage: \"Early Stage\",\n    target_customer: \"B2B\"\n};\n\ntry {\n    // CRITICAL: Ensure this node name matches your actual previous node!\n    const sourceData = $('Parser').last().json;\n    if (sourceData) {\n        llmData = sourceData;\n    }\n} catch (error) {\n    llmData.error_log = \"Node name mismatch or data missing\";\n}\n\n// --- A. VALIDATION CHECKS (The Gatekeeper) ---\nlet saveToAirtable = true;\n\nconst badNames = [\"Inc42\", \"YourStory\", \"Entrackr\", \"Oracle\", \"Google\", \"TechCrunch\", \"INVALID\"];\nconst companyName = (llmData.company_name || \"\").toString();\n\n// Check 1: Publisher Names\nif (badNames.some(n => companyName.toLowerCase().includes(n.toLowerCase()))) {\n    saveToAirtable = false;\n}\n\n// Check 2: Empty Founder\n// If founder is missing or generic \"Startup Team\", don't save.\nif (!llmData.founder || llmData.founder === \"\" || llmData.founder === \"Startup Team\") {\n    saveToAirtable = false; \n}\n\n// --- B. CLEARBIT WEBSITE LOGIC ---\nlet website = \"\";\nlet logo = \"\";\n\nif (clearbitResult && !Array.isArray(clearbitResult) && clearbitResult.domain) {\n    website = \"https://\" + clearbitResult.domain;\n    logo = clearbitResult.logo;\n} \nelse if (Array.isArray(clearbitResult) && clearbitResult.length > 0 && clearbitResult[0].domain) {\n    website = \"https://\" + clearbitResult[0].domain;\n    logo = clearbitResult.logo;\n}\n\n// --- C. FINAL ENRICHMENT ---\n\n// Force Target Customer\nif (!llmData.target_customer || llmData.target_customer === \"\") {\n    llmData.target_customer = \"B2B\"; \n}\n\n// Force Stage\nif (!llmData.startup_stage || llmData.startup_stage === \"\") {\n    llmData.startup_stage = \"Early Stage\";\n}\n\n// Force Email (Only if valid company)\nif (!llmData.contact_email || llmData.contact_email === \"\") {\n     if (saveToAirtable) {\n         const cleanName = companyName.replace(/[^a-zA-Z0-9]/g, \"\").toLowerCase();\n         llmData.contact_email = `hello@${cleanName}.com`; \n     } else {\n         llmData.contact_email = \"\";\n     }\n}\n\n// --- D. OUTPUT ---\n// CRITICAL FIX: We added \"save_to_airtable\" to the return object below\nreturn [{\n    json: {\n        ...llmData,\n        website_url: website,\n        logo_url: logo,\n        save_to_airtable: saveToAirtable \n    }\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2288,
+        1024
+      ],
+      "id": "9b0cc6c4-4d66-4f58-b7a0-d00cf0843a2a",
+      "name": "Final Code"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "8a4b2968-c64f-4e80-9068-25033ae524d8",
+              "leftValue": "={{ $json.company_name }}",
+              "rightValue": "INVALID",
+              "operator": {
+                "type": "string",
+                "operation": "notContains"
+              }
+            },
+            {
+              "id": "85d88cd2-e6ff-4b12-9bb7-c47610d81d60",
+              "leftValue": "={{ $json.company_name }}",
+              "rightValue": "Inc42",
+              "operator": {
+                "type": "string",
+                "operation": "notContains"
+              }
+            },
+            {
+              "id": "4b23b638-93c7-4ad4-9626-6e07c1466ad7",
+              "leftValue": "",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            },
+            {
+              "id": "825b0986-c327-43e8-b621-8f3dfa7b0f8d",
+              "leftValue": "={{ $json.save_to_airtable }}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        2528,
+        1024
+      ],
+      "id": "d70bb6ae-59fb-48de-80bc-2219427ded95",
+      "name": "If"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "RSS Read1",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "RSS Read",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "RSS Read": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge": {
+      "main": [
+        [
+          {
+            "node": "Slice Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Ollama Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Basic LLM Chain",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Basic LLM Chain": {
+      "main": [
+        [
+          {
+            "node": "Parser",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "RSS Read1": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Loop Over Items": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Basic LLM Chain",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Airtable Save": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Slice Items": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Clearbit": {
+      "main": [
+        [
+          {
+            "node": "Final Code",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Parser": {
+      "main": [
+        [
+          {
+            "node": "Clearbit",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Final Code": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Airtable Save",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "availableInMCP": false
+  },
+  "versionId": "91796ae7-3452-4875-8c06-54f823487841",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "c90232f3b4009b231bf2f8e37ac8f0d355a51ee2d758222256d8931a70163c04"
+  },
+  "id": "juwXmLHRvRGW9jpV",
+  "tags": []
+}
